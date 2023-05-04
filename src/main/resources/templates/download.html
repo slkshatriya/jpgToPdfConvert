@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Convert JPEG to PDF - Download</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>window.jsPDF = window.jspdf.jsPDF;
+var docPDF = new jsPDF();
+function print(){
+var elementHTML = document.querySelector(".card");
+docPDF.html(elementHTML, {
+ callback: function(docPDF) {
+  docPDF.save('Converted.pdf');
+ },
+ x: 15,
+ y: 15,
+ width: 170,
+ windowWidth: 650
+});
+}</script>
+    <style>
+        .card{
+        text-align: center;
+
+        }
+        .view {
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <img th:src="${image}" alt="imageview">
+</div>
+<div class="view">
+    <button class="btn btn-primary" id="button" onclick="print()">Download</button>
+
+</div>
+</body>
+</html>
